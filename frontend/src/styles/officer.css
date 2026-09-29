@@ -1,0 +1,285 @@
+/* ==========================================================================
+   Officer Module styles (scoped). Reuses existing design tokens from
+   theme.css. Does not redefine or override any generic/global class
+   (.button, .card, .container, .header, .navbar, etc.) used by Citizen/Admin.
+   ========================================================================== */
+
+.officer-layout {
+  display: flex;
+  gap: var(--spacing-8);
+  align-items: flex-start;
+}
+
+.officer-sidebar {
+  width: 220px;
+  flex-shrink: 0;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--spacing-4);
+  position: sticky;
+  top: var(--spacing-6);
+}
+
+.officer-sidebar-title {
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-light);
+  padding: 0 var(--spacing-3);
+  margin-bottom: var(--spacing-3);
+}
+
+.officer-sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+}
+
+.officer-sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  padding: var(--spacing-3);
+  border-radius: var(--radius-md);
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+  text-decoration: none;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.officer-sidebar-link:hover {
+  background: #eef5ff;
+  color: var(--primary);
+}
+
+.officer-sidebar-link.active {
+  background: var(--primary);
+  color: #fff;
+}
+
+.officer-content {
+  flex: 1;
+  min-width: 0;
+}
+
+@media (max-width: 768px) {
+  .officer-layout {
+    flex-direction: column;
+  }
+
+  .officer-sidebar {
+    width: 100%;
+    position: static;
+  }
+
+  .officer-sidebar-nav {
+    flex-direction: row;
+    overflow-x: auto;
+  }
+}
+
+/* Dashboard stat cards */
+.officer-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: var(--spacing-4);
+  margin: var(--spacing-6) 0;
+}
+
+.officer-stat-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--spacing-5);
+}
+
+.officer-stat-label {
+  font-size: var(--font-size-sm);
+  color: var(--text-light);
+  font-weight: 600;
+  margin-bottom: var(--spacing-2);
+}
+
+.officer-stat-value {
+  font-size: var(--font-size-3xl);
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.officer-stat-card.officer-stat-pending .officer-stat-value { color: var(--warning); }
+.officer-stat-card.officer-stat-progress .officer-stat-value { color: var(--secondary); }
+.officer-stat-card.officer-stat-resolved .officer-stat-value { color: var(--success); }
+.officer-stat-card.officer-stat-rejected .officer-stat-value { color: var(--error); }
+
+.officer-section-title {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--text);
+  margin: var(--spacing-6) 0 var(--spacing-3);
+}
+
+/* Complaints list / review */
+.officer-complaints .table-wrapper {
+  margin-top: var(--spacing-2);
+}
+
+.officer-review-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-6);
+}
+
+@media (max-width: 900px) {
+  .officer-review-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.officer-review-field {
+  margin-bottom: var(--spacing-4);
+}
+
+.officer-review-field-label {
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-light);
+  margin-bottom: var(--spacing-1);
+}
+
+.officer-review-field-value {
+  font-size: var(--font-size-base);
+  color: var(--text);
+}
+
+.officer-review-form label {
+  display: block;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: var(--spacing-2);
+}
+
+.officer-review-form select,
+.officer-review-form textarea {
+  width: 100%;
+  padding: var(--spacing-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  font-family: inherit;
+  font-size: var(--font-size-base);
+  margin-bottom: var(--spacing-4);
+}
+
+/* History timeline */
+.officer-history-timeline {
+  list-style: none;
+  margin: var(--spacing-4) 0 0;
+  padding: 0;
+  border-left: 2px solid var(--border);
+}
+
+.officer-history-item {
+  position: relative;
+  padding: 0 0 var(--spacing-5) var(--spacing-5);
+}
+
+.officer-history-item::before {
+  content: '';
+  position: absolute;
+  left: -7px;
+  top: 4px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--secondary);
+  border: 2px solid var(--card);
+}
+
+.officer-history-status {
+  font-weight: 700;
+  color: var(--text);
+}
+
+.officer-history-meta {
+  font-size: var(--font-size-xs);
+  color: var(--text-light);
+  margin-top: var(--spacing-1);
+}
+
+.officer-history-remarks {
+  font-size: var(--font-size-sm);
+  color: var(--text-muted);
+  margin-top: var(--spacing-1);
+}
+
+/* Status pill (reuses .status-badge sizing rules, adds officer-specific colors) */
+.officer-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.officer-status-pending {
+  background-color: var(--warning-bg);
+  color: #92400E;
+  border: 1px solid var(--warning-border);
+}
+
+.officer-status-progress {
+  background-color: #EFF6FF;
+  color: #1D4ED8;
+  border: 1px solid #BFDBFE;
+}
+
+.officer-status-resolved {
+  background-color: var(--success-bg);
+  color: #065F46;
+  border: 1px solid var(--success-border);
+}
+
+.officer-status-rejected {
+  background-color: var(--error-bg);
+  color: #991B1B;
+  border: 1px solid var(--error-border);
+}
+
+/* Officer feature additions: intentionally scoped to officer pages. */
+.officer-filter-row { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:var(--spacing-4); }
+.officer-filter-row input,.officer-filter-row select,.officer-review-form input { flex:1; min-width:220px; padding:var(--spacing-3); border:1px solid var(--border); border-radius:var(--radius-md); font:inherit; background:var(--card); color:var(--text); }
+.officer-section-heading-row { display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; }
+.officer-priority { display:inline-flex; align-items:center; padding:.25rem .6rem; border-radius:999px; font-size:.78rem; font-weight:700; background:#f1f5f9; color:#475569; }
+.officer-priority.emergency { background:#fee2e2; color:#991b1b; border:1px solid #fecaca; }
+.officer-status-reopened { background:#fef3c7; color:#92400e; border:1px solid #fcd34d; }
+.officer-status-duplicate { background:#fee2e2; color:#991b1b; border:1px solid #fecaca; }
+.officer-status-escalated { background:#fef3c7; color:#92400e; border:1px solid #fcd34d; }
+.officer-stat-reopened .officer-stat-value { color:#b45309; }
+.officer-stat-duplicate .officer-stat-value { color:#b91c1c; }
+.officer-stat-escalated .officer-stat-value { color:#b45309; }
+.officer-logout-link { width:100%; border:0; background:transparent; text-align:left; cursor:pointer; font-family:inherit; }
+.officer-logout-link:disabled { opacity:.6; cursor:wait; }
+.officer-attention-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:var(--spacing-3); margin-bottom:var(--spacing-6); }
+.officer-attention-card { padding:var(--spacing-4); border:1px solid var(--border); border-radius:var(--radius-lg); background:var(--card); color:var(--text); text-decoration:none; box-shadow:var(--shadow-sm); }
+.officer-attention-card:hover { transform:translateY(-1px); }
+.officer-evidence-card,.officer-reopen-card,.officer-duplicate-notice { margin-top:var(--spacing-6); }
+.officer-evidence-grid { display:grid; grid-template-columns:1fr 1fr; gap:var(--spacing-6); }
+.officer-evidence-grid h3 { margin:0 0 var(--spacing-3); font-size:var(--font-size-base); }
+.officer-evidence-image,.officer-evidence-video { width:100%; max-height:360px; object-fit:contain; border:1px solid var(--border); border-radius:var(--radius-md); background:#f8fafc; display:block; margin-bottom:var(--spacing-3); }
+.officer-evidence-video { min-height:220px; }
+.officer-subcard-title { margin-top:var(--spacing-6); }
+.officer-full-button { width:100%; margin-top:var(--spacing-3); }
+.officer-action-row { display:flex; gap:12px; flex-wrap:wrap; margin-top:var(--spacing-4); }
+.officer-duplicate-decision { margin-top:var(--spacing-6); }
+.officer-duplicate-decision textarea { width:100%; padding:var(--spacing-3); border:1px solid var(--border); border-radius:var(--radius-md); font:inherit; margin-top:var(--spacing-2); }
+@media(max-width:900px){.officer-evidence-grid{grid-template-columns:1fr}.officer-filter-row input,.officer-filter-row select{min-width:100%;}}
